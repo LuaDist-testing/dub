@@ -1,0 +1,176 @@
+== 2.2.0 2014-05-15
+
+* Major enhancement
+  * Generate bindings compatible with Lua 5.2.
+  * Not touching global namespace anymore: 'require' returns the library.
+  * Moving all 'dub' C++ methods inside 'dub' namespace.
+  * Replacing 'lubyk' dependency by 'lub'.
+  * Functions marked as 'ignore' are no longer bound in sub-classes.
+  * Installs with luarocks.
+  * Removing 'lib_prefix' option and using 'no_prefix' argument instead.
+  * Much improved documentation.
+  * CMake build system.
+
+== 2.1.0
+
+* Major enhancement
+  * Added support for functions (not class methods).
+  * Anonymous union support.
+  * Added support for Callbacks from C++.
+  * Added support for pseudo-attributes (get/set methods).
+  * Added support for string_format and string_args to customize __tostring from @dub.
+  * Added support for 'register' option in @dub.
+  * Added support for custom destructor: 'destructor' option in @dub.
+  * Added 'namespace' option (support for namespace constants and functions.
+  * Added :deleted() on all class bindings to detect C++ deleted objects from Lua.
+  * Optimized 'dub_issdata' when the only type resolution involves userdata.
+  * Automatically transform operator= to "set" method.
+  * Added support for @dub name: "xxx" in method.
+
+* Minor enhancement
+  * Should not add namespace to typedef of template in namespace.
+  * Should check doxygen header versions.
+  * Should create cast for unresolved templated parents.
+  * Added 'ignore' setting for parser.
+  * Ignoring 'struct' keyword in param (C++ name scoping rules apply).
+  * Casting enum types to 'int' instead of double.
+  * Added 'extra_headers' option to binder.
+  * Fixed bug with unamed method parameters (Tim Mensch).
+  * Fixed bug with void parameter (Tim Mensch).
+  * Fixed bug where lua stack would grow during class registration (Tim Mensch).
+  * Added 'attr_name_filter' to rename attributes.
+  * Removed 'yaml' dependency and changed @dub options format.
+  * Binding all classes now works inside a namespace.
+  * Added support for custom bindings with default values.
+  * Added @dub bind: false option to not create bindings.
+  * Added @dub destructor: false option to not destroy from lua.
+  * @dub ignore can be used to ignore attributes.
+  * Warn on nested namespaces instead of crash.
+  * Better handling of unknown (opaque) types.
+  * Added tests for custom global function bindings.
+  * Should list super classes in C++ visibility order (from child to parent).
+  * Class.type should reflect class name, not registration name.
+  * Should not create 'cast' method when superclasses have 'cast: false'.
+  * Allow multiple 'header_base' paths to remove (removes the first one matching).
+  * Make sure abstract types are detected even if all pure virtual functions are ignored.
+  * Support for warn levels (5 = all, 4 = less, ..., 1 = errors).
+  * Fixed a bug preventing dub from detecting ignored attributes.
+  * Fixed a bug where dub would not recognize the correct super class.
+  * Only cast to unknown classes when explicitely declared in @dub.
+  * Including "lua.h" instead of "dub/lua.h" to not force dub's lua.h.
+
+== 2.0.0 2012-01-21
+* Complete rewrite in Lua
+  * Most of the previous features are there (but not all).
+  * Added support for attributes read/write.
+  * Garbage collection protection for pointers.
+  * Return value optimization.
+  * Garbage collection optimization (an idea from Tim Mensch).
+  * Doxygen parsing (no need to provide xml).
+  * Added support for nested classes and namespaces.
+  * Added support for custom bindings on attributes.
+  * Added 'Doxyfile' option on inspector to allow custom Doxyfile.
+  * Added support for void *userdata to store Lua types.
+  * Added support for transparent native table wrapping.
+  * Added support for abstract types and casting to these types.
+  * ...
+
+== 1.1 --- Last version written in Ruby
+
+* Minor enhancement
+  * We can omit 'return 0' when defining body with yaml.
+  * Automatically uses luaDestroy with subclassed with LuaObject.
+  * Fixed 'deleted' method (should be present when we use LuaObject).
+
+== 1.0.0
+
+* Major enhancement
+  * Support for yaml definition of binding body.
+  * Support for superclass (reuse of definitions from the super class)
+  
+== 0.7.1
+
+The tests in this release do not pass, but the generator is really better and works. I just
+don't have the time to fix the tests.
+
+* Major enhancement
+  * When the object inherits from a LuaObject class, it calls luaInit(L, obj, "foo.Bar")
+
+== 0.7.0 2011-08-19
+
+The tests in this release do not pass, but the generator is really better and works. I just
+don't have the time to fix the tests.
+
+* Major enhancements
+  * Support for finding userdata from lua table ('super').
+
+== 0.6.7
+
+* Major enhancements
+  * Added support for LuaStackSize pseudo return value (enables direct stack manipulation).
+  * Added support for Qt 'public slot:' declarations.
+  * Added support for 'ignore' @dub setting.
+  * Added support for custom (or no) destructors.
+  * Fixed bugs related to overloaded methods and constructors.
+  * Added support for const char * return type.
+  * Added support for delete in C++ and/or Lua (DeletableOutOfLua class).
+  * Added 'deleted' method when the class can be destroyed out of Lua.
+  * Added support for custom constructors.
+  * Giving access to meta-table in libname.ClassName_.
+  * Changed LuaL_check... for dubL_check... to work in try/catch scope (thanks to Ignacio Burgueño)
+  * Fixed a bug in argument decision tree when there are default values.
+  * Fixed error reporting in try/catch to avoid memory leaks (thanks to Ignacio Burgueño)
+
+== 0.6.6 2010-12-16
+
+* Major enhancements
+  * Added support for @dub custom Doxygen tag to set class options.
+
+== 0.6.5 2010-12-15
+
+* Major enhancements
+  * Added support for custom_types (defined with Dub::Lua.function_generator.custom_type).
+  * Added support for lib_name and other customizations through klass.opts.
+
+== 0.6.4 2010-07-14
+
+* 1 enhancement
+  * Fixed homepage link in gem and documentation.
+
+== 0.6.3 2010-07-07
+
+* 1 enhancement
+  * Should ignore non-public member methods.
+
+== 0.6.2 2010-07-07
+
+* 1 enhancement
+  * Added an option define (DUB_LUA_NO_OPEN) to replace luaopen_xx by luaload_xx
+  * Added char in the list of 'int' types.
+
+== 0.6.1 2010-03-12
+
+* 2 enhancements
+  * Wrapping all function calls in try.. catch blocks
+  * Added support for custome templates (customize exception handling for example)
+
+== 0.6.0 2010-03-11
+
+* 4 enhancements
+  * added support for custom tostring methods for classes
+  * fixed parsing of templated return types
+  * static class methods are now registered in the namespace as Klass_method
+  * removing functions and methods with class pointer arguments (could use lists later on)
+  * better parsing of complex types (including nested template arguments)
+
+== 0.5.1 2010-03-05
+
+* 2 minor enhancements
+  * if an argument is fully specified, should not append namespace
+  * better handling of boolean values
+
+== 0.5.0 2010-03-03
+
+* 1 major enhancement
+  * initial release and tested with OpenCV bindings for Lua
+

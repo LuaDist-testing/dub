@@ -1,0 +1,10 @@
+.DS_Store
+*.o
+*.a
+*.so
+*.swp
+build
+test/fixtures/Box2D
+test/tmp
+tmp
+/html

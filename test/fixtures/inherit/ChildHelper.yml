@@ -1,0 +1,13 @@
+lua:
+  methods:
+    position: |
+      lua_pushnumber(L, self->x());
+      lua_pushnumber(L, self->y());
+      return 2;
+    addToX:
+      arg0: |
+        lua_pushnumber(L, self->x() + 4.0);
+        return 1;
+      arg1: |
+        lua_pushnumber(L, self->x() + n);
+        return 1;
