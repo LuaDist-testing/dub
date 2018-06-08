@@ -1,3 +1,14 @@
+== 2.2.1 2015-05-05
+
+* Major changes
+  * Fixed binding generation for Windows (missing dllexport). Thanks LPGhatguy.
+  * Fixed string detection in overloaded function decision tree (#7).
+
+* Minor changes
+  * Fixed dependency definitions.
+  * Fixed Doxyfile to avoid doxygen warnings.
+  * Fixed test compile warnings.
+
 == 2.2.0 2014-05-15
 
 * Major enhancement
